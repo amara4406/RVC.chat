@@ -1,0 +1,3915 @@
+/* =========================================================
+   RVC.CHAT — FRIENDS PAGE
+   FINAL VISUAL PASS
+   BLUE / DARK BLUE / BLACK / WHITE
+   LARGE SLIDESHOW
+   HUGE BLENDED TYPOGRAPHY
+   ========================================================= */
+
+
+/* =========================================================
+   1. DESIGN TOKENS
+   ========================================================= */
+
+.friends-page {
+    --friends-blue: #008cff;
+    --friends-blue-bright: #00c4ff;
+    --friends-blue-light: #65d5ff;
+    --friends-blue-dark: #0059ad;
+    --friends-blue-deep: #00172d;
+
+    --friends-black: #010204;
+    --friends-black-soft: #05080c;
+
+    --friends-white: #ffffff;
+    --friends-muted: rgba(255,255,255,.68);
+
+    --friends-border: rgba(0,170,255,.28);
+    --friends-border-bright: rgba(0,190,255,.62);
+
+    --friends-panel: rgba(2,7,13,.82);
+    --friends-panel-soft: rgba(4,12,21,.70);
+
+    --friends-radius: 12px;
+
+    --friends-shadow:
+        0 18px 45px rgba(0,0,0,.48);
+
+    --friends-blue-glow:
+        0 0 24px rgba(0,170,255,.24);
+}
+
+
+/* =========================================================
+   2. PAGE RESET
+   ========================================================= */
+
+html:has(body.friends-page) {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background:
+        #020304
+        url("../uploads/bluee.jpg")
+        center center / cover
+        fixed
+        no-repeat !important;
+
+    scroll-behavior: smooth;
+}
+
+
+body.friends-page {
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.08),
+            rgba(0,8,18,.08) 40%,
+            rgba(0,0,0,.42) 100%
+        ),
+        url("../uploads/bluee.jpg")
+        center center / cover
+        fixed
+        no-repeat !important;
+
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+}
+
+
+.friends-page .site-background,
+.friends-page .site-background-overlay {
+    display: none !important;
+}
+
+
+/* =========================================================
+   3. GLOBAL BOX SIZING
+   ========================================================= */
+
+.friends-page *,
+.friends-page *::before,
+.friends-page *::after {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   4. SMOOTH UI
+   ========================================================= */
+
+.friends-page {
+    scroll-behavior: smooth;
+}
+
+.friends-page a,
+.friends-page button,
+.friends-page .friend-card,
+.friends-page .community-benefit,
+.friends-page .friends-panel,
+.friends-page img {
+    transition:
+        transform .28s cubic-bezier(.22,.61,.36,1),
+        opacity .28s ease,
+        background-color .28s ease,
+        border-color .28s ease,
+        box-shadow .28s ease,
+        color .28s ease;
+}
+
+
+/* =========================================================
+   5. NAVBAR
+   ========================================================= */
+
+.friends-page .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    min-height: 64px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(1,5,11,.97),
+            rgba(1,9,18,.90)
+        ) !important;
+
+    border-bottom:
+        1px solid rgba(0,183,255,.34) !important;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.42);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+
+.friends-page .nav-container {
+    width:
+        min(1420px, calc(100% - 40px));
+
+    min-height: 64px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 18px;
+}
+
+
+.friends-page .brand {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+}
+
+
+.friends-page .friends-brand-icon {
+    width: 39px;
+    height: 39px;
+
+    flex: 0 0 39px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00c2ff,
+            #0061bd 58%,
+            #001a35
+        );
+
+    box-shadow:
+        0 0 22px rgba(0,183,255,.38);
+}
+
+
+.friends-page .brand-text {
+    color: #ffffff !important;
+
+    font-weight: 900;
+
+    letter-spacing: .04em;
+}
+
+
+.friends-page .nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.friends-page .nav-links a,
+.friends-page .nav-dropdown > a {
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 34px;
+
+    padding: 0 11px;
+
+    border-radius: 7px;
+
+    color:
+        rgba(255,255,255,.74) !important;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    text-decoration: none !important;
+}
+
+
+.friends-page .nav-links a:hover,
+.friends-page .nav-dropdown > a:hover,
+.friends-page .friends-active {
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,183,255,.16),
+            rgba(0,70,140,.10)
+        );
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(0,183,255,.20);
+}
+
+
+.friends-page .nav-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   6. NAVBAR ONLINE STATUS
+   ========================================================= */
+
+.friends-page .online-status,
+.friends-page .nav-online-status {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color:
+        rgba(255,255,255,.72) !important;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.friends-page .nav-online-status .online-dot {
+    width: 7px;
+    height: 7px;
+
+    flex: 0 0 7px;
+
+    border-radius: 50%;
+
+    background: #00ff66 !important;
+
+    box-shadow:
+        0 0 0 4px rgba(0,255,102,.08),
+        0 0 9px rgba(0,255,102,.72),
+        0 0 17px rgba(0,255,102,.42);
+}
+
+
+.friends-page .friends-join-button {
+    min-height: 34px;
+
+    padding: 0 14px;
+
+    border-radius: 7px;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00b7ff,
+            #0067c7 60%,
+            #002b55
+        ) !important;
+
+    border:
+        1px solid rgba(0,210,255,.56) !important;
+
+    box-shadow:
+        0 6px 20px rgba(0,110,220,.24);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    text-decoration: none !important;
+}
+
+
+/* =========================================================
+   7. MAIN
+   ========================================================= */
+
+.friends-page .friends-main {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+
+    background:
+        transparent !important;
+}
+
+
+/* =========================================================
+   8. HERO
+   ========================================================= */
+
+.friends-page .friends-hero {
+    position: relative;
+
+    margin:
+        0 0 34px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,0,0,.30),
+            rgba(0,20,40,.25),
+            rgba(0,0,0,.12)
+        ) !important;
+
+    border-bottom:
+        1px solid rgba(0,183,255,.14);
+
+    overflow: hidden;
+}
+
+
+.friends-page .friends-hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 12% 35%,
+            rgba(0,183,255,.17),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 84% 15%,
+            rgba(0,82,180,.14),
+            transparent 30%
+        );
+}
+
+
+.friends-page .friends-hero-container {
+    position: relative;
+    z-index: 2;
+
+    width:
+        min(1420px, calc(100% - 34px));
+
+    margin: 0 auto;
+
+    padding:
+        34px 0 32px;
+}
+
+
+/* =========================================================
+   9. HERO TEXT
+   ========================================================= */
+
+.friends-page .friends-intro {
+    position: relative;
+
+    max-width: 720px;
+}
+
+
+.friends-page .friends-eyebrow,
+.friends-page .slideshow-eyebrow,
+.friends-page .community-eyebrow {
+    color:
+        var(--friends-blue-bright) !important;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: .20em;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   10. QUICK ACTIONS
+   ========================================================= */
+
+.friends-page .friends-quick-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+
+.friends-page .friends-home-button,
+.friends-page .friends-play-button,
+.friends-page #findSomeoneButton {
+    min-height: 36px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   11. PROFILE CARD
+   ========================================================= */
+
+.friends-page .profile-summary {
+    width:
+        min(390px, 100%);
+
+    margin-top: 24px;
+
+    padding:
+        20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(2,13,25,.86),
+            rgba(0,39,72,.54),
+            rgba(0,0,0,.72)
+        ) !important;
+
+    border:
+        1px solid rgba(0,183,255,.28);
+
+    border-radius:
+        var(--friends-radius);
+
+    box-shadow:
+        0 16px 35px rgba(0,0,0,.34),
+        inset 0 1px 0 rgba(255,255,255,.04);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+}
+
+
+.friends-page #profileAvatar {
+    width: 104px !important;
+    height: 104px !important;
+
+    min-width: 104px !important;
+
+    border-radius: 50% !important;
+
+    border:
+        3px solid rgba(0,190,255,.72) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #00bfff,
+            #0064c8 52%,
+            #00172d
+        ) !important;
+
+    box-shadow:
+        0 0 0 6px rgba(0,183,255,.06),
+        0 0 28px rgba(0,183,255,.34);
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+}
+
+
+.friends-page #profileAvatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+.friends-page #profileName {
+    color: #ffffff !important;
+
+    font-size: 18px;
+
+    font-weight: 950;
+
+    line-height: 1.15;
+}
+
+
+.friends-page #profileUsername {
+    color:
+        rgba(255,255,255,.55) !important;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+.friends-page #onlineCount,
+.friends-page #friendCount,
+.friends-page #voiceCount {
+    color: #ffffff !important;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   12. SLIDESHOW SECTION
+   ========================================================= */
+
+.friends-page .friends-slideshow-section {
+    position: relative;
+
+    isolation: isolate;
+
+    margin:
+        48px 0 58px;
+
+    padding:
+        34px 0 25px;
+
+    overflow: hidden;
+
+    background:
+        transparent !important;
+}
+
+
+/* =========================================================
+   13. HUGE CINEMATIC TYPOGRAPHY
+   ========================================================= */
+
+/*
+   These are intentionally BIG.
+
+   The first word remains white.
+
+   TOGETHER uses:
+   WHITE → ELECTRIC BLUE → DARK BLUE → BLACK
+
+   This creates the blended effect instead of
+   simply making the whole sentence blue.
+*/
+
+
+.friends-page .friends-slideshow-section::before {
+    content:
+        "PLAY TOGETHER";
+
+    position:
+        absolute;
+
+    left:
+        -75px;
+
+    top:
+        -35px;
+
+    z-index:
+        0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(82px, 10.5vw, 180px);
+
+    font-weight:
+        1000;
+
+    line-height:
+        .82;
+
+    letter-spacing:
+        -.075em;
+
+    white-space:
+        nowrap;
+
+    color:
+        #ffffff;
+
+    text-transform:
+        uppercase;
+
+    opacity:
+        .88;
+
+    pointer-events:
+        none;
+
+    transform:
+        rotate(-4deg);
+
+    filter:
+        drop-shadow(
+            0 15px 35px rgba(0,0,0,.55)
+        );
+}
+
+
+/*
+   We use the second pseudo element as a giant
+   TALK TOGETHER layer.
+
+   Its entire text is gradient-filled so the
+   "TOGETHER" portion visibly sinks into blue/black.
+*/
+
+.friends-page .friends-slideshow-section::after {
+    content:
+        "TALK TOGETHER";
+
+    position:
+        absolute;
+
+    right:
+        -90px;
+
+    bottom:
+        -20px;
+
+    z-index:
+        0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(78px, 9.5vw, 165px);
+
+    font-weight:
+        1000;
+
+    line-height:
+        .80;
+
+    letter-spacing:
+        -.075em;
+
+    white-space:
+        nowrap;
+
+    text-transform:
+        uppercase;
+
+    color:
+        transparent;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            #ffffff 0%,
+            #ffffff 34%,
+
+            #eafaff 40%,
+
+            #43d1ff 49%,
+
+            #008cff 58%,
+
+            #0056a8 69%,
+
+            #002d59 79%,
+
+            #000000 93%,
+
+            #000000 100%
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    opacity:
+        .88;
+
+    pointer-events:
+        none;
+
+    transform:
+        rotate(3deg);
+
+    filter:
+        drop-shadow(
+            0 15px 35px rgba(0,0,0,.60)
+        );
+}
+
+
+/* =========================================================
+   14. EXTRA GIANT TEXT LAYERS
+   ========================================================= */
+
+/*
+   These give us more depth without taking over
+   the actual slideshow.
+*/
+
+.friends-page .friends-slideshow-section .friends-slideshow-container::before {
+    content:
+        "VOICE TOGETHER";
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    z-index:
+        0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.05);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(70px, 9vw, 155px);
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        -.08em;
+
+    line-height:
+        .8;
+
+    white-space:
+        nowrap;
+
+    text-transform:
+        uppercase;
+
+    color:
+        transparent;
+
+    background:
+        linear-gradient(
+            100deg,
+
+            rgba(255,255,255,.16) 0%,
+            rgba(255,255,255,.16) 20%,
+
+            rgba(0,197,255,.15) 42%,
+
+            rgba(0,106,210,.13) 62%,
+
+            rgba(0,0,0,.18) 100%
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    opacity:
+        .72;
+
+    pointer-events:
+        none;
+}
+
+
+/* =========================================================
+   15. SLIDESHOW HEADING
+   ========================================================= */
+
+.friends-page .friends-slideshow-container {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(1420px, calc(100% - 34px));
+
+    margin:
+        0 auto;
+
+    padding:
+        8px 0 14px;
+}
+
+
+.friends-page .slideshow-heading {
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    margin-bottom:
+        18px;
+}
+
+
+.friends-page .slideshow-heading h2 {
+    margin:
+        5px 0 0;
+
+    color:
+        #ffffff !important;
+
+    font-size:
+        clamp(23px, 3vw, 36px);
+
+    font-weight:
+        950;
+
+    letter-spacing:
+        -.035em;
+}
+
+
+/* =========================================================
+   16. BIGGER SLIDESHOW
+   ========================================================= */
+
+/*
+   THIS IS THE MAIN SIZE CHANGE.
+
+   Much larger vertically while still remaining
+   a wide cinematic card.
+*/
+
+.friends-page .friends-slideshow,
+.friends-page .games-slideshow {
+    position:
+        relative;
+
+    width:
+        100%;
+
+    height:
+        clamp(470px, 46vw, 640px);
+
+    overflow:
+        hidden;
+
+    background:
+        #010204 !important;
+
+    border:
+        1px solid rgba(0,183,255,.36);
+
+    border-radius:
+        16px;
+
+    box-shadow:
+        0 28px 70px rgba(0,0,0,.62),
+        0 0 45px rgba(0,110,220,.10);
+
+    isolation:
+        isolate;
+}
+
+
+/*
+   Blue / black edge glow.
+*/
+
+.friends-page .friends-slideshow::before,
+.friends-page .games-slideshow::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        3;
+
+    pointer-events:
+        none;
+
+    border-radius:
+        inherit;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,200,255,.20),
+            transparent 24%,
+            transparent 65%,
+            rgba(0,72,145,.24)
+        );
+}
+
+
+/* =========================================================
+   17. SLIDES
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide,
+.friends-page .games-slideshow .slide {
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    overflow:
+        hidden;
+
+    transform:
+        translate3d(0,0,0);
+
+    transition:
+        opacity .75s cubic-bezier(.22,.61,.36,1),
+        visibility .75s ease;
+}
+
+
+.friends-page .friends-slideshow .slide.active,
+.friends-page .games-slideshow .slide.active {
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    z-index:
+        2;
+}
+
+
+/* =========================================================
+   18. SLIDESHOW IMAGES
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide img,
+.friends-page .games-slideshow .slide img {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center center;
+
+    transform:
+        scale(1.01)
+        translate3d(0,0,0);
+
+    will-change:
+        transform;
+
+    transition:
+        transform 9s cubic-bezier(.16,1,.3,1);
+}
+
+
+.friends-page .friends-slideshow .slide.active img,
+.friends-page .games-slideshow .slide.active img {
+    transform:
+        scale(1.055)
+        translate3d(0,0,0);
+}
+
+
+/* =========================================================
+   19. SLIDESHOW COLOR BLENDING
+   ========================================================= */
+
+.friends-page .friends-slideshow::after,
+.friends-page .games-slideshow::after {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        4;
+
+    pointer-events:
+        none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.00) 15%,
+            rgba(0,8,18,.04) 45%,
+            rgba(0,0,0,.32) 72%,
+            rgba(0,0,0,.76) 100%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(0,15,30,.22),
+            transparent 32%,
+            transparent 70%,
+            rgba(0,43,85,.18)
+        );
+}
+
+
+/* =========================================================
+   20. GAME TITLES
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide h1,
+.friends-page .friends-slideshow .slide h2,
+.friends-page .friends-slideshow .slide h3,
+.friends-page .friends-slideshow .slide .game-title,
+.friends-page .friends-slideshow .slide .slide-title,
+.friends-page .games-slideshow .slide h1,
+.friends-page .games-slideshow .slide h2,
+.friends-page .games-slideshow .slide h3,
+.friends-page .games-slideshow .slide .game-title,
+.friends-page .games-slideshow .slide .slide-title {
+    position:
+        relative;
+
+    z-index:
+        7;
+
+    color:
+        #ffffff !important;
+
+    text-shadow:
+        0 3px 16px rgba(0,0,0,.92),
+        0 0 12px rgba(0,0,0,.65);
+
+    font-weight:
+        950;
+}
+
+
+.friends-page .friends-slideshow .slide figcaption,
+.friends-page .games-slideshow .slide figcaption {
+    position:
+        relative;
+
+    z-index:
+        7;
+
+    color:
+        #ffffff !important;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.95);
+}
+
+
+/* =========================================================
+   21. SLIDESHOW CONTROLS
+   ========================================================= */
+
+.friends-page .slideshow-controls {
+    position:
+        relative;
+
+    z-index:
+        9;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-top:
+        -68px;
+
+    padding:
+        0 20px;
+
+    pointer-events:
+        none;
+}
+
+
+.friends-page .slideshow-controls button,
+.friends-page #slideshowPrev,
+.friends-page #slideshowNext {
+    pointer-events:
+        auto;
+
+    width:
+        44px;
+
+    height:
+        44px;
+
+    min-width:
+        44px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    padding:
+        0;
+
+    color:
+        #ffffff !important;
+
+    background:
+        rgba(0,7,15,.82) !important;
+
+    border:
+        1px solid rgba(0,190,255,.48) !important;
+
+    border-radius:
+        9px !important;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.48);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+.friends-page .slideshow-controls button:hover,
+.friends-page #slideshowPrev:hover,
+.friends-page #slideshowNext:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,183,255,.72),
+            rgba(0,60,120,.88)
+        ) !important;
+
+    border-color:
+        rgba(0,220,255,.90) !important;
+
+    transform:
+        translateY(-2px)
+        scale(1.03);
+}
+
+
+/* =========================================================
+   22. PROGRESS
+   ========================================================= */
+
+.friends-page #slideshowProgress {
+    position:
+        relative;
+
+    z-index:
+        9;
+
+    width:
+        min(380px,48%);
+
+    height:
+        3px;
+
+    margin:
+        17px auto 0;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+
+.friends-page #slideshowProgress > * {
+    background:
+        linear-gradient(
+            90deg,
+            #003c7a,
+            #007de0,
+            #00c4ff
+        ) !important;
+}
+
+
+/* =========================================================
+   23. SLIDESHOW DOTS
+   ========================================================= */
+
+.friends-page #slideshowDots {
+    position:
+        relative;
+
+    z-index:
+        10;
+
+    width:
+        100%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        9px;
+
+    min-height:
+        24px;
+
+    margin:
+        13px auto 0;
+
+    padding:
+        4px 8px;
+}
+
+
+.friends-page #slideshowDots > *,
+.friends-page #slideshowDots button,
+.friends-page #slideshowDots [data-slide] {
+    width:
+        8px !important;
+
+    height:
+        8px !important;
+
+    min-width:
+        8px !important;
+
+    min-height:
+        8px !important;
+
+    flex:
+        0 0 8px !important;
+
+    margin:
+        0 !important;
+
+    padding:
+        0 !important;
+
+    border-radius:
+        50% !important;
+
+    border:
+        1px solid rgba(255,255,255,.55) !important;
+
+    background:
+        rgba(255,255,255,.28) !important;
+
+    box-shadow:
+        none !important;
+
+    opacity:
+        .82 !important;
+
+    transform:
+        scale(1) !important;
+
+    cursor:
+        pointer;
+}
+
+
+.friends-page #slideshowDots > *:hover,
+.friends-page #slideshowDots button:hover,
+.friends-page #slideshowDots [data-slide]:hover {
+    background:
+        rgba(0,183,255,.72) !important;
+
+    border-color:
+        rgba(0,210,255,.95) !important;
+
+    opacity:
+        1 !important;
+
+    transform:
+        scale(1.15) !important;
+}
+
+
+.friends-page #slideshowDots .active,
+.friends-page #slideshowDots button.active,
+.friends-page #slideshowDots [data-slide].active,
+.friends-page #slideshowDots [aria-current="true"] {
+    background:
+        #00c4ff !important;
+
+    border-color:
+        #00c4ff !important;
+
+    opacity:
+        1 !important;
+
+    box-shadow:
+        0 0 5px #00c4ff,
+        0 0 12px #00aaff,
+        0 0 24px rgba(0,150,255,.85),
+        0 0 38px rgba(0,90,255,.38) !important;
+
+    transform:
+        scale(1.38) !important;
+}
+
+
+/* =========================================================
+   24. WORKSPACE
+   ========================================================= */
+
+.friends-page .friends-workspace {
+    position:
+        relative;
+
+    margin:
+        42px 0 58px;
+}
+
+
+.friends-page .friends-workspace-container,
+.friends-page .friends-container {
+    position:
+        relative;
+
+    z-index:
+        6;
+
+    width:
+        min(1420px, calc(100% - 34px));
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(300px,.76fr)
+        minmax(500px,1.24fr);
+
+    gap:
+        20px;
+
+    align-items:
+        stretch;
+}
+
+
+/* =========================================================
+   25. PANELS
+   ========================================================= */
+
+.friends-page .friends-panel {
+    position:
+        relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(2,10,18,.88),
+            rgba(0,30,55,.66),
+            rgba(1,4,8,.88)
+        ) !important;
+
+    border:
+        1px solid rgba(0,160,255,.28) !important;
+
+    border-radius:
+        var(--friends-radius);
+
+    box-shadow:
+        0 16px 38px rgba(0,0,0,.42);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    overflow:
+        hidden;
+}
+
+
+.friends-page .friends-panel:hover {
+    border-color:
+        rgba(0,183,255,.40) !important;
+}
+
+
+/* =========================================================
+   26. PANEL HEADER
+   ========================================================= */
+
+.friends-page .friends-panel-header {
+    min-height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        8px 13px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,35,68,.52),
+            rgba(0,10,20,.34)
+        );
+
+    border-bottom:
+        1px solid rgba(0,153,255,.16);
+}
+
+
+.friends-page .friends-panel-header h2,
+.friends-page .friends-panel-header h3 {
+    margin:
+        0;
+
+    color:
+        #ffffff !important;
+
+    font-size:
+        13px;
+
+    font-weight:
+        900;
+}
+
+
+/* =========================================================
+   27. FRIEND SEARCH
+   ========================================================= */
+
+.friends-page .friend-search-box {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    padding:
+        8px 9px;
+
+    border-bottom:
+        1px solid rgba(0,153,255,.12);
+}
+
+
+.friends-page #friendSearch {
+    width:
+        100%;
+
+    min-height:
+        32px;
+
+    padding:
+        0 10px;
+
+    color:
+        #ffffff !important;
+
+    background:
+        rgba(0,0,0,.38) !important;
+
+    border:
+        1px solid rgba(0,153,255,.22) !important;
+
+    border-radius:
+        7px !important;
+
+    outline:
+        none;
+}
+
+
+.friends-page #friendSearch:focus {
+    border-color:
+        rgba(0,183,255,.72) !important;
+
+    box-shadow:
+        0 0 0 2px rgba(0,183,255,.08);
+}
+
+
+.friends-page #clearFriendSearch {
+    width:
+        31px;
+
+    min-width:
+        31px;
+
+    height:
+        31px;
+
+    padding:
+        0;
+}
+
+
+/* =========================================================
+   28. FILTERS
+   ========================================================= */
+
+.friends-page .friend-filter {
+    min-height:
+        29px;
+
+    padding:
+        0 9px;
+
+    color:
+        rgba(255,255,255,.58) !important;
+
+    background:
+        transparent !important;
+
+    border:
+        1px solid transparent !important;
+
+    border-radius:
+        6px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+}
+
+
+.friends-page .friend-filter.active {
+    color:
+        #ffffff !important;
+
+    background:
+        rgba(0,140,255,.15) !important;
+
+    border-color:
+        rgba(0,183,255,.25) !important;
+}
+
+
+/* =========================================================
+   29. FRIEND LIST
+   ========================================================= */
+
+.friends-page .friend-list,
+.friends-page .friends-grid {
+    display:
+        flex !important;
+
+    flex-direction:
+        column !important;
+
+    gap:
+        3px !important;
+
+    width:
+        100%;
+
+    padding:
+        6px !important;
+
+    margin:
+        0 !important;
+}
+
+
+/* =========================================================
+   30. FRIEND CARD
+   ========================================================= */
+
+.friends-page .friend-card {
+    position:
+        relative;
+
+    width:
+        100%;
+
+    min-height:
+        48px !important;
+
+    height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    padding:
+        6px 8px !important;
+
+    border-radius:
+        7px !important;
+
+    background:
+        rgba(255,255,255,.018) !important;
+
+    border:
+        1px solid transparent !important;
+
+    box-shadow:
+        none !important;
+
+    transform:
+        none !important;
+
+    overflow:
+        visible;
+}
+
+
+.friends-page .friend-card:hover {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,140,255,.12),
+            rgba(0,40,80,.08)
+        ) !important;
+
+    border-color:
+        rgba(0,183,255,.18) !important;
+
+    transform:
+        translateX(2px) !important;
+}
+
+
+/* =========================================================
+   31. FRIEND AVATAR
+   ========================================================= */
+
+.friends-page .friend-avatar {
+    position:
+        relative;
+
+    flex:
+        0 0 34px !important;
+
+    width:
+        34px !important;
+
+    height:
+        34px !important;
+
+    min-width:
+        34px !important;
+
+    border-radius:
+        50% !important;
+
+    border:
+        1px solid rgba(0,183,255,.38) !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #008cff,
+            #00529f 55%,
+            #00182f
+        );
+
+    box-shadow:
+        0 0 8px rgba(0,153,255,.12);
+
+    overflow:
+        visible !important;
+}
+
+
+.friends-page .friend-avatar img {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        block;
+
+    object-fit:
+        cover;
+
+    border-radius:
+        50%;
+}
+
+
+/* =========================================================
+   32. ONLINE / OFFLINE
+   ========================================================= */
+
+.friends-page .friend-card .online-dot,
+.friends-page .friend-card .status-dot,
+.friends-page .friend-avatar .online-dot,
+.friends-page .friend-avatar .status-dot {
+    position:
+        absolute !important;
+
+    right:
+        -2px !important;
+
+    bottom:
+        -2px !important;
+
+    top:
+        auto !important;
+
+    left:
+        auto !important;
+
+    width:
+        9px !important;
+
+    height:
+        9px !important;
+
+    min-width:
+        9px !important;
+
+    min-height:
+        9px !important;
+
+    flex:
+        none !important;
+
+    border-radius:
+        50% !important;
+
+    border:
+        2px solid #06101a !important;
+
+    background:
+        #00ff66 !important;
+
+    box-shadow:
+        0 0 5px rgba(0,255,102,.95),
+        0 0 11px rgba(0,255,102,.68),
+        0 0 18px rgba(0,255,102,.35) !important;
+
+    z-index:
+        20 !important;
+
+    transform:
+        none !important;
+}
+
+
+.friends-page .friend-card .online-dot.offline,
+.friends-page .friend-card .status-dot.offline,
+.friends-page .friend-avatar .online-dot.offline,
+.friends-page .friend-avatar .status-dot.offline {
+    background:
+        #66717b !important;
+
+    box-shadow:
+        0 0 4px rgba(130,145,155,.48) !important;
+}
+
+
+.friends-page .friend-card .online-status-text,
+.friends-page .friend-card .offline-status-text,
+.friends-page .friend-card .status-text,
+.friends-page .friend-card .friend-status,
+.friends-page .friend-card .status-label {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   33. FRIEND INFORMATION
+   ========================================================= */
+
+.friends-page .friend-card .friend-info {
+    min-width:
+        0;
+
+    flex:
+        1;
+
+    overflow:
+        hidden;
+}
+
+
+.friends-page .friend-card .friend-name {
+    display:
+        block;
+
+    overflow:
+        hidden;
+
+    white-space:
+        nowrap;
+
+    text-overflow:
+        ellipsis;
+
+    color:
+        #ffffff !important;
+
+    font-size:
+        11px !important;
+
+    font-weight:
+        850 !important;
+
+    line-height:
+        1.30;
+
+    margin:
+        0;
+}
+
+
+.friends-page .friend-card .friend-username {
+    display:
+        block;
+
+    overflow:
+        hidden;
+
+    white-space:
+        nowrap;
+
+    text-overflow:
+        ellipsis;
+
+    color:
+        rgba(255,255,255,.45) !important;
+
+    font-size:
+        9px !important;
+
+    line-height:
+        1.25;
+
+    margin-top:
+        2px;
+}
+
+
+.friends-page .friend-card > * {
+    min-width:
+        0;
+}
+
+
+.friends-page .friend-card .friend-info * {
+    max-width:
+        100%;
+}
+
+
+/* =========================================================
+   34. FRIEND ACTION BUTTONS
+   ========================================================= */
+
+.friends-page .friend-card button {
+    flex:
+        0 0 28px;
+
+    width:
+        28px !important;
+
+    min-width:
+        28px !important;
+
+    height:
+        28px !important;
+
+    min-height:
+        28px !important;
+
+    padding:
+        0 !important;
+
+    border-radius:
+        6px !important;
+
+    font-size:
+        10px !important;
+}
+
+
+/* =========================================================
+   35. VOICE PANEL
+   ========================================================= */
+
+.friends-page .voice-panel {
+    min-height:
+        430px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(2,10,18,.88),
+            rgba(0,27,50,.64),
+            rgba(0,0,0,.86)
+        ) !important;
+}
+
+
+.friends-page .voice-room {
+    min-height:
+        340px;
+}
+
+
+/* =========================================================
+   36. EMPTY STATES
+   ========================================================= */
+
+.friends-page .no-friends,
+.friends-page #voiceEmpty {
+    color:
+        rgba(255,255,255,.55) !important;
+
+    text-align:
+        center;
+
+    padding:
+        30px 15px;
+}
+
+
+.friends-page .no-friends.hidden,
+.friends-page .voice-room.hidden {
+    display:
+        none !important;
+}
+
+
+/* =========================================================
+   37. COMMUNITY SECTION
+   ========================================================= */
+
+.friends-page .friends-community-section {
+    position:
+        relative;
+
+    margin:
+        58px 0 0;
+
+    padding:
+        45px 0 52px;
+
+    background:
+        transparent !important;
+
+    border-top:
+        1px solid rgba(0,153,255,.14);
+
+    border-bottom:
+        1px solid rgba(0,153,255,.14);
+
+    overflow:
+        hidden;
+}
+
+
+.friends-page .friends-community-container {
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(1420px, calc(100% - 34px));
+
+    margin:
+        0 auto;
+}
+
+
+.friends-page .friends-community-content {
+    max-width:
+        850px;
+}
+
+
+.friends-page .community-benefits {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:
+        16px;
+
+    margin-top:
+        25px;
+}
+
+
+.friends-page .community-benefit {
+    min-height:
+        170px;
+
+    padding:
+        22px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(0,130,230,.09),
+            rgba(0,0,0,.42)
+        ) !important;
+
+    border:
+        1px solid rgba(0,160,255,.22);
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.25);
+}
+
+
+.friends-page .community-benefit:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(0,190,255,.48);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,183,255,.13),
+            rgba(0,48,95,.18),
+            rgba(0,0,0,.46)
+        ) !important;
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.32),
+        0 0 25px rgba(0,130,255,.10);
+}
+
+
+/* =========================================================
+   38. COMMUNITY HUGE TEXT
+   ========================================================= */
+
+.friends-page .friends-community-section::before {
+    content:
+        "PLAY TOGETHER";
+
+    position:
+        absolute;
+
+    right:
+        -65px;
+
+    top:
+        -15px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        clamp(90px, 12vw, 190px);
+
+    font-weight:
+        1000;
+
+    letter-spacing:
+        -.075em;
+
+    line-height:
+        .78;
+
+    white-space:
+        nowrap;
+
+    text-transform:
+        uppercase;
+
+    color:
+        transparent;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ffffff 0%,
+            #ffffff 29%,
+            #f1fcff 36%,
+            #00c4ff 49%,
+            #008cff 60%,
+            #00529f 72%,
+            #001f40 84%,
+            #000000 100%
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    opacity:
+        .82;
+
+    transform:
+        rotate(-4deg);
+
+    pointer-events:
+        none;
+
+    filter:
+        drop-shadow(
+            0 14px 35px rgba(0,0,0,.55)
+        );
+}
+
+
+/* =========================================================
+   39. FOOTER
+   ========================================================= */
+
+.friends-page .friends-footer {
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    margin-top:
+        0;
+
+    padding:
+        30px 18px;
+
+    color:
+        rgba(255,255,255,.46);
+
+    background:
+        rgba(0,3,7,.72) !important;
+
+    border-top:
+        1px solid rgba(0,153,255,.18);
+
+    text-align:
+        center;
+
+    font-size:
+        10px;
+}
+
+
+/* =========================================================
+   40. GENERAL BUTTONS
+   ========================================================= */
+
+.friends-page button {
+    color:
+        #ffffff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,153,255,.94),
+            rgba(0,75,155,.94)
+        ) !important;
+
+    border:
+        1px solid rgba(0,183,255,.40) !important;
+
+    border-radius:
+        7px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+}
+
+
+.friends-page button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #00baff,
+            #0069c9
+        ) !important;
+
+    border-color:
+        rgba(0,220,255,.75) !important;
+
+    box-shadow:
+        0 7px 20px rgba(0,110,220,.25);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   41. RESTORE DOT COLORS
+   ========================================================= */
+
+.friends-page #slideshowDots button,
+.friends-page #slideshowDots [data-slide] {
+    background:
+        rgba(255,255,255,.28) !important;
+
+    border:
+        1px solid rgba(255,255,255,.55) !important;
+
+    box-shadow:
+        none !important;
+
+    transform:
+        scale(1) !important;
+}
+
+
+.friends-page #slideshowDots button.active,
+.friends-page #slideshowDots [data-slide].active,
+.friends-page #slideshowDots .active,
+.friends-page #slideshowDots [aria-current="true"] {
+    background:
+        #00c4ff !important;
+
+    border-color:
+        #00c4ff !important;
+
+    box-shadow:
+        0 0 5px #00c4ff,
+        0 0 12px #00aaff,
+        0 0 24px rgba(0,150,255,.85),
+        0 0 38px rgba(0,90,255,.38) !important;
+
+    opacity:
+        1 !important;
+
+    transform:
+        scale(1.38) !important;
+}
+
+
+/* =========================================================
+   42. LINKS
+   ========================================================= */
+
+.friends-page a {
+    color:
+        inherit;
+}
+
+
+.friends-page a:hover {
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   43. SCROLLBAR
+   ========================================================= */
+
+.friends-page ::-webkit-scrollbar {
+    width:
+        7px;
+
+    height:
+        7px;
+}
+
+
+.friends-page ::-webkit-scrollbar-track {
+    background:
+        rgba(0,0,0,.30);
+}
+
+
+.friends-page ::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,183,255,.70),
+            rgba(0,76,155,.55)
+        );
+
+    border-radius:
+        999px;
+}
+
+
+.friends-page ::-webkit-scrollbar-thumb:hover {
+    background:
+        #00b7ff;
+}
+
+
+/* =========================================================
+   44. LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height:
+            640px;
+    }
+
+    .friends-page .friends-workspace-container,
+    .friends-page .friends-container {
+        gap:
+            22px;
+    }
+
+    .friends-page .friend-card {
+        min-height:
+            48px !important;
+
+        height:
+            48px;
+    }
+
+}
+
+
+/* =========================================================
+   45. TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height:
+            clamp(450px, 52vw, 570px);
+    }
+
+    .friends-page .friends-workspace-container,
+    .friends-page .friends-container {
+        grid-template-columns:
+            minmax(280px,.82fr)
+            minmax(360px,1.18fr);
+
+        gap:
+            16px;
+    }
+
+    .friends-page .community-benefits {
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .friends-page .friends-slideshow-section::before {
+        font-size:
+            clamp(75px,10vw,145px);
+    }
+
+    .friends-page .friends-slideshow-section::after {
+        font-size:
+            clamp(70px,9vw,135px);
+    }
+}
+
+
+/* =========================================================
+   46. SMALLER TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .friends-page .nav-links {
+        gap:
+            2px;
+    }
+
+    .friends-page .nav-links a,
+    .friends-page .nav-dropdown > a {
+        padding:
+            0 7px;
+
+        font-size:
+            10px;
+    }
+
+
+    .friends-page .friends-workspace-container,
+    .friends-page .friends-container {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            16px;
+    }
+
+
+    .friends-page .voice-panel {
+        min-height:
+            400px;
+    }
+
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height:
+            clamp(410px, 62vw, 520px);
+    }
+
+
+    .friends-page .profile-summary {
+        width:
+            min(390px,100%);
+    }
+
+
+    .friends-page .friends-slideshow-section::before {
+        top:
+            -15px;
+
+        left:
+            -45px;
+    }
+
+    .friends-page .friends-slideshow-section::after {
+        right:
+            -70px;
+
+        bottom:
+            -5px;
+    }
+}
+
+
+/* =========================================================
+   47. MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .friends-page .nav-container {
+        width:
+            calc(100% - 20px);
+
+        gap:
+            8px;
+    }
+
+
+    .friends-page .brand-text {
+        display:
+            none;
+    }
+
+
+    .friends-page .nav-links {
+        display:
+            none;
+    }
+
+
+    .friends-page .nav-actions {
+        margin-left:
+            auto;
+    }
+
+
+    .friends-page .friends-hero-container,
+    .friends-page .friends-slideshow-container,
+    .friends-page .friends-workspace-container,
+    .friends-page .friends-container,
+    .friends-page .friends-community-container {
+        width:
+            calc(100% - 20px);
+    }
+
+
+    .friends-page .friends-hero-container {
+        padding:
+            26px 0 27px;
+    }
+
+
+    .friends-page .friends-slideshow-section {
+        margin:
+            30px 0 38px;
+
+        padding:
+            20px 0 20px;
+    }
+
+
+    /*
+       Still considerably bigger than before.
+    */
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height:
+            clamp(340px, 86vw, 450px);
+
+        border-radius:
+            10px;
+    }
+
+
+    .friends-page .slideshow-controls {
+        padding:
+            0 10px;
+
+        margin-top:
+            -55px;
+    }
+
+
+    .friends-page .slideshow-controls button,
+    .friends-page #slideshowPrev,
+    .friends-page #slideshowNext {
+        width:
+            38px;
+
+        height:
+            38px;
+
+        min-width:
+            38px;
+    }
+
+
+    .friends-page #slideshowDots {
+        gap:
+            7px;
+
+        margin-top:
+            12px;
+    }
+
+
+    .friends-page #slideshowDots > *,
+    .friends-page #slideshowDots button,
+    .friends-page #slideshowDots [data-slide] {
+        width:
+            7px !important;
+
+        height:
+            7px !important;
+
+        min-width:
+            7px !important;
+
+        min-height:
+            7px !important;
+
+        flex-basis:
+            7px !important;
+    }
+
+
+    .friends-page .friends-workspace {
+        margin:
+            32px 0 42px;
+    }
+
+
+    .friends-page .community-benefits {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .friends-page .friends-community-section {
+        margin-top:
+            40px;
+
+        padding:
+            34px 0 42px;
+    }
+
+
+    .friends-page .community-benefit {
+        min-height:
+            145px;
+    }
+
+
+    .friends-page .friend-card {
+        min-height:
+            46px !important;
+
+        height:
+            46px;
+    }
+
+
+    .friends-page .friend-avatar {
+        width:
+            32px !important;
+
+        height:
+            32px !important;
+
+        flex-basis:
+            32px !important;
+
+        min-width:
+            32px !important;
+    }
+
+
+    /*
+       Mobile giant typography.
+       Keep it visible but partially off-screen
+       so it feels like a design element.
+    */
+
+    .friends-page .friends-slideshow-section::before {
+        font-size:
+            74px;
+
+        left:
+            -32px;
+
+        top:
+            -3px;
+    }
+
+
+    .friends-page .friends-slideshow-section::after {
+        font-size:
+            67px;
+
+        right:
+            -50px;
+
+        bottom:
+            -2px;
+    }
+
+
+    .friends-page .friends-slideshow-section .friends-slideshow-container::before {
+        font-size:
+            58px;
+
+        opacity:
+            .38;
+    }
+
+
+    .friends-page .friends-community-section::before {
+        font-size:
+            72px;
+
+        right:
+            -30px;
+    }
+}
+
+
+/* =========================================================
+   48. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height:
+            320px;
+    }
+
+
+    .friends-page .slideshow-heading h2 {
+        font-size:
+            20px;
+    }
+
+
+    .friends-page .friends-slideshow-section::before {
+        font-size:
+            61px;
+
+        top:
+            -2px;
+
+        left:
+            -27px;
+    }
+
+
+    .friends-page .friends-slideshow-section::after {
+        font-size:
+            55px;
+
+        right:
+            -42px;
+
+        bottom:
+            -2px;
+    }
+
+
+    .friends-page .friends-slideshow-section .friends-slideshow-container::before {
+        font-size:
+            46px;
+    }
+
+
+    .friends-page .profile-summary {
+        padding:
+            17px;
+    }
+
+
+    .friends-page #profileAvatar {
+        width:
+            88px !important;
+
+        height:
+            88px !important;
+
+        min-width:
+            88px !important;
+    }
+
+
+    .friends-page .friend-card {
+        min-height:
+            43px !important;
+
+        height:
+            43px;
+
+        padding:
+            4px 6px !important;
+    }
+
+
+    .friends-page .friend-avatar {
+        width:
+            30px !important;
+
+        height:
+            30px !important;
+
+        flex-basis:
+            30px !important;
+
+        min-width:
+            30px !important;
+    }
+
+
+    .friends-page .friends-quick-actions {
+        gap:
+            6px;
+    }
+
+
+    .friends-page .friends-community-section::before {
+        font-size:
+            58px;
+    }
+}
+
+
+/* =========================================================
+   49. REDUCE MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html:has(body.friends-page),
+    body.friends-page {
+        scroll-behavior:
+            auto !important;
+    }
+
+    .friends-page *,
+    .friends-page *::before,
+    .friends-page *::after {
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            .01ms !important;
+
+        animation-duration:
+            .01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+    }
+
+}/* =========================================================
+   RVC.CHAT — FRIENDS PAGE
+   FINAL TYPOGRAPHY + SLIDESHOW OVERRIDE
+   ========================================================= */
+
+
+/* =========================================================
+   1. HERO PHRASE
+   "Your friends. Your voice. Your game."
+   
+   Slightly larger.
+   "Your friends." stays white.
+   Blending begins around "Your voice."
+   ========================================================= */
+
+.friends-page .friends-intro h1,
+.friends-page .friends-intro h2 {
+    font-size: clamp(34px, 4.2vw, 58px) !important;
+    font-weight: 950 !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.045em !important;
+
+    color: transparent !important;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            /* YOUR FRIENDS = WHITE */
+            #ffffff 0%,
+            #ffffff 40%,
+
+            /* START BLENDING AT YOUR VOICE */
+            #f7fdff 44%,
+            #d9f7ff 49%,
+            #7cddff 55%,
+            #00bfff 62%,
+            #008cff 70%,
+            #0059ad 79%,
+            #002b55 88%,
+            #000000 100%
+        ) !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+
+    -webkit-text-fill-color: transparent !important;
+
+    text-shadow: none !important;
+}
+
+
+/*
+   If the heading is actually a paragraph/div rather than h1/h2,
+   apply the same visual treatment to the likely intro text.
+*/
+
+.friends-page .friends-intro > p:first-of-type {
+    font-size: clamp(18px, 2vw, 25px);
+    font-weight: 800;
+
+    color: transparent !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #ffffff 40%,
+            #f7fdff 44%,
+            #d9f7ff 49%,
+            #7cddff 55%,
+            #00bfff 62%,
+            #008cff 70%,
+            #0059ad 79%,
+            #002b55 88%,
+            #000000 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* =========================================================
+   2. REMOVE THE HUGE DECORATIVE TEXT
+   ========================================================= */
+
+/*
+   DELETE:
+   PLAY TOGETHER
+   TALK TOGETHER
+   VOICE TOGETHER
+*/
+
+.friends-page .friends-slideshow-section::before {
+    content: none !important;
+    display: none !important;
+}
+
+.friends-page .friends-slideshow-section::after {
+    content: none !important;
+    display: none !important;
+}
+
+.friends-page .friends-slideshow-section
+.friends-slideshow-container::before {
+    content: none !important;
+    display: none !important;
+}
+
+
+/* Remove the old PLAY TOGETHER from community section too */
+
+.friends-page .friends-community-section::before {
+    content: none !important;
+    display: none !important;
+}
+
+
+/* =========================================================
+   3. SLIDESHOW CARD
+   IMAGE MUST FILL THE ENTIRE CARD
+   ========================================================= */
+
+.friends-page .friends-slideshow,
+.friends-page .games-slideshow {
+    position: relative !important;
+
+    width: 100% !important;
+
+    height: clamp(430px, 42vw, 600px) !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+
+    overflow: hidden !important;
+
+    background: #000 !important;
+
+    border: 1px solid rgba(0,183,255,.36) !important;
+
+    border-radius: 16px !important;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   4. SLIDES — TRUE EDGE-TO-EDGE
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide,
+.friends-page .games-slideshow .slide {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+}
+
+
+/* =========================================================
+   5. ALL IMAGE WRAPPERS FILL THE CARD
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide figure,
+.friends-page .games-slideshow .slide figure,
+
+.friends-page .friends-slideshow .slide picture,
+.friends-page .games-slideshow .slide picture,
+
+.friends-page .friends-slideshow .slide a,
+.friends-page .games-slideshow .slide a {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+}
+
+
+/* =========================================================
+   6. SLIDESHOW IMAGES
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide img,
+.friends-page .games-slideshow .slide img {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    min-width: 100% !important;
+    min-height: 100% !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    object-fit: cover !important;
+
+    object-position: center center !important;
+
+    transform:
+        scale(1.01)
+        translate3d(0,0,0) !important;
+
+    border: 0 !important;
+
+    border-radius: 0 !important;
+}
+
+
+/* =========================================================
+   7. ACTIVE SLIDE ZOOM
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide.active img,
+.friends-page .games-slideshow .slide.active img {
+    transform:
+        scale(1.045)
+        translate3d(0,0,0) !important;
+}
+
+
+/* =========================================================
+   8. REMOVE UNNECESSARY BLACK GAPS AROUND FIGCAPTION
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide figcaption,
+.friends-page .games-slideshow .slide figcaption {
+    position: absolute !important;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 7;
+
+    margin: 0 !important;
+
+    padding: 24px 24px 28px !important;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(0,0,0,.12) 20%,
+            rgba(0,0,0,.68) 100%
+        ) !important;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.95);
+}
+
+
+/* =========================================================
+   9. SLIDESHOW IMAGE OVERLAY
+   Keep images visible — NOT TOO DARK
+   ========================================================= */
+
+.friends-page .friends-slideshow::after,
+.friends-page .games-slideshow::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) 55%,
+            rgba(0,0,0,.18) 75%,
+            rgba(0,0,0,.62) 100%
+        );
+}
+
+
+/* =========================================================
+   10. SLIDESHOW BORDER GLOW
+   ========================================================= */
+
+.friends-page .friends-slideshow::before,
+.friends-page .games-slideshow::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    border-radius: inherit;
+
+    border: 1px solid rgba(0,190,255,.18);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,200,255,.10),
+            transparent 25%,
+            transparent 72%,
+            rgba(0,72,145,.12)
+        );
+}
+
+
+/* =========================================================
+   11. KEEP SLIDESHOW TEXT ABOVE IMAGE
+   ========================================================= */
+
+.friends-page .friends-slideshow .slide h1,
+.friends-page .friends-slideshow .slide h2,
+.friends-page .friends-slideshow .slide h3,
+.friends-page .friends-slideshow .slide .game-title,
+.friends-page .friends-slideshow .slide .slide-title,
+
+.friends-page .games-slideshow .slide h1,
+.friends-page .games-slideshow .slide h2,
+.friends-page .games-slideshow .slide h3,
+.friends-page .games-slideshow .slide .game-title,
+.friends-page .games-slideshow .slide .slide-title {
+    position: relative !important;
+
+    z-index: 8 !important;
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 3px 16px rgba(0,0,0,.95),
+        0 0 12px rgba(0,0,0,.75);
+}
+
+
+/* =========================================================
+   12. SLIDESHOW HEADING
+   Keep it clean — no giant text behind it
+   ========================================================= */
+
+.friends-page .slideshow-heading {
+    position: relative;
+
+    z-index: 10;
+
+    margin-bottom: 16px;
+}
+
+
+.friends-page .slideshow-heading h2 {
+    font-size: clamp(22px, 2.6vw, 32px) !important;
+
+    font-weight: 950 !important;
+
+    color: #ffffff !important;
+
+    letter-spacing: -.035em !important;
+}
+
+
+/* =========================================================
+   13. RESPONSIVE SLIDESHOW
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height: clamp(390px, 55vw, 540px) !important;
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .friends-page .friends-intro h1,
+    .friends-page .friends-intro h2 {
+        font-size: clamp(29px, 7.5vw, 43px) !important;
+
+        line-height: 1.05 !important;
+    }
+
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height: clamp(330px, 82vw, 440px) !important;
+
+        border-radius: 10px !important;
+    }
+
+
+    .friends-page .friends-slideshow .slide figcaption,
+    .friends-page .games-slideshow .slide figcaption {
+        padding:
+            18px 16px 22px !important;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .friends-page .friends-intro h1,
+    .friends-page .friends-intro h2 {
+        font-size: 28px !important;
+    }
+
+
+    .friends-page .friends-slideshow,
+    .friends-page .games-slideshow {
+        height: 320px !important;
+    }
+
+}/* =========================================================
+   RVC.CHAT — FRIENDS SLIDESHOW FINAL OVERRIDE
+   FULL-BLEED IMAGES
+   ========================================================= */
+
+.friends-page .friends-slideshow-section {
+    width: 100%;
+}
+
+.friends-page .friends-slideshow-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.friends-page .friends-slideshow {
+    position: relative !important;
+    width: 100% !important;
+    height: clamp(520px, 52vw, 720px) !important;
+
+    overflow: hidden !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border-radius: 18px !important;
+
+    background: #000 !important;
+    border: 1px solid rgba(0, 183, 255, .35) !important;
+
+    isolation: isolate !important;
+}
+
+/* TRACK MUST FILL THE CARD */
+.friends-page .friends-slideshow .slideshow-track {
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* EACH SLIDE FILLS THE WHOLE CARD */
+.friends-page .friends-slideshow .slideshow-slide {
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    background: #000 !important;
+}
+
+/* IMAGE FILLS EVERYTHING */
+.friends-page .friends-slideshow .slideshow-slide img {
+    display: block !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    object-fit: cover !important;
+    object-position: center center !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    transform: scale(1.01);
+}
+
+/* ACTIVE IMAGE */
+.friends-page .friends-slideshow
+.slideshow-slide.active img {
+    transform: scale(1.01) !important;
+}
+
+/* KEEP CONTROLS ABOVE IMAGE */
+.friends-page .friends-slideshow .slideshow-control {
+    z-index: 20 !important;
+}
+
+/* KEEP PROGRESS ABOVE IMAGE */
+.friends-page .friends-slideshow .slideshow-progress {
+    z-index: 21 !important;
+}
+
+/* KEEP DOTS ABOVE IMAGE */
+.friends-page .friends-slideshow .slideshow-dots {
+    z-index: 21 !important;
+}
+
+/* REMOVE OLD GIANT DECORATIVE WORDS */
+.friends-page .friends-slideshow-section::before,
+.friends-page .friends-slideshow-section::after,
+.friends-page .friends-slideshow-container::before,
+.friends-page .friends-slideshow-container::after,
+.friends-page .friends-community-section::before,
+.friends-page .friends-community-section::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .friends-page .friends-slideshow {
+        height: clamp(380px, 65vw, 560px) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .friends-page .friends-slideshow {
+        height: 360px !important;
+        border-radius: 14px !important;
+    }
+}/*
+/* =========================================================
+   RVC.CHAT — VOICE MICROPHONE SYSTEM
+   ========================================================= */
+
+
+/* =========================================================
+   PARTICIPANT CARD
+   ========================================================= */
+
+.voice-participant-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    margin: 18px 0;
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 20, 25, 0.96),
+            rgba(8, 8, 12, 0.98)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 16px;
+}
+
+
+/* =========================================================
+   PROFILE AREA
+   ========================================================= */
+
+.voice-participant-profile {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+
+.voice-participant-profile .selected-avatar {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff2020,
+            #7b0000
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+
+.voice-participant-profile
+.selected-friend-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.voice-participant-profile
+.selected-friend-info strong {
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.voice-participant-profile
+.selected-friend-info span {
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MICROPHONE BUTTON
+   ========================================================= */
+
+.voice-mic-button {
+    width: 54px;
+    height: 54px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    transition:
+        transform 0.16s ease,
+        background 0.16s ease,
+        color 0.16s ease,
+        box-shadow 0.16s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.voice-mic-button:hover {
+    transform: translateY(-2px) scale(1.04);
+}
+
+
+.voice-mic-button:active {
+    transform: scale(0.94);
+}
+
+
+.voice-mic-button:focus-visible {
+    outline:
+        3px solid rgba(255, 255, 255, 0.8);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MUTED / OFF
+   ========================================================= */
+
+.voice-mic-button.is-muted {
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    color:
+        rgba(255, 255, 255, 0.62);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.voice-mic-button.is-muted:hover {
+    background:
+        rgba(255, 255, 255, 0.16);
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================================
+   LIVE / UNMUTED
+   ========================================================= */
+
+.voice-mic-button.is-live {
+    background:
+        #19d66b;
+
+    color:
+        #06140b;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(25, 214, 107, 0.12),
+
+        0 10px 30px
+        rgba(25, 214, 107, 0.28);
+}
+
+
+.voice-mic-button.is-live:hover {
+    background:
+        #2be77a;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(25, 214, 107, 0.15),
+
+        0 12px 35px
+        rgba(25, 214, 107, 0.35);
+}
+
+
+/* =========================================================
+   MICROPHONE STATUS
+   ========================================================= */
+
+.voice-mic-status {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin:
+        -6px 0
+        14px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+.voice-mic-status-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        #777777;
+
+    transition:
+        background 0.16s ease,
+        box-shadow 0.16s ease;
+}
+
+
+.voice-mic-status-dot.is-live {
+    background:
+        #19d66b;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(25, 214, 107, 0.12);
+}
+
+
+/* =========================================================
+   ACTIVE VOICE WAVE
+   ========================================================= */
+
+.voice-wave.voice-active span {
+    animation:
+        rvcVoiceWave 0.75s
+        ease-in-out
+        infinite alternate;
+}
+
+
+.voice-wave.voice-active span:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+
+.voice-wave.voice-active span:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+
+.voice-wave.voice-active span:nth-child(3) {
+    animation-delay: 0.18s;
+}
+
+
+.voice-wave.voice-active span:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+
+.voice-wave.voice-active span:nth-child(5) {
+    animation-delay: 0.10s;
+}
+
+
+.voice-wave.voice-active span:nth-child(6) {
+    animation-delay: 0.20s;
+}
+
+
+.voice-wave.voice-active span:nth-child(7) {
+    animation-delay: 0.15s;
+}
+
+
+.voice-wave.voice-active span:nth-child(8) {
+    animation-delay: 0.28s;
+}
+
+
+@keyframes rvcVoiceWave {
+
+    from {
+        transform: scaleY(0.35);
+        opacity: 0.45;
+    }
+
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   SPEAKER MUTED STATE
+   ========================================================= */
+
+#speakerButton.is-muted {
+    opacity: 0.5;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .voice-participant-card {
+        padding: 13px;
+
+        gap: 10px;
+    }
+
+
+    .voice-participant-profile {
+        gap: 10px;
+    }
+
+
+    .voice-participant-profile
+    .selected-avatar {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 12px;
+    }
+
+
+    .voice-mic-button {
+        width: 50px;
+        height: 50px;
+
+        font-size: 18px;
+    }
+
+}
